@@ -1,50 +1,57 @@
 
-
-const themeButton = document.querySelector("#theme-button");
-const toggleDarkMode = () => {
-    document.body.classList.toggle("dark-mode");
-};
-themeButton.addEventListener("click", toggleDarkMode);
-
-// RSVP Form Handling
 const rsvpForm = document.querySelector("#rsvp-form");
 const nameInput = document.querySelector("#Name");
 const locationInput = document.querySelector("#Location");
-const participantsContainer = document.querySelector(".rsvp-participants"); // holds <p> RSVPs
-let count = 3; // starting count
+const participantsContainer = document.querySelector(".rsvp-participants");
 
-const addParticipant = (event) => {
-    event.preventDefault(); // prevent page reload
+let count = 3; 
 
-    const name = nameInput.value.trim();
-    const location = locationInput.value.trim();
+const addParticipant = (name, location) => {
+  const newParticipant = document.createElement("p");
+  newParticipant.textContent = `🎟️ ${name} from ${location} has RSVP'd.`;
+  participantsContainer.appendChild(newParticipant);
 
-    if (name === "" || location === "") {
-        alert("Please enter both your name and home state!");
-        return;
-    }
+  count += 1;
+  const oldCounter = document.querySelector("#rsvp-count");
+  if (oldCounter) oldCounter.remove();
 
-    // Step 1: Add new participant
-    const newParticipant = document.createElement("p");
-    newParticipant.textContent = `🎟️ ${name} from ${location} has RSVP'd.`;
-    participantsContainer.appendChild(newParticipant);
-
-    nameInput.value = "";
-    locationInput.value = "";
-
-    const oldCounter = document.querySelector("#rsvp-count");
-    if (oldCounter) {
-        oldCounter.remove(); 
-    }
-
-    count = count + 1;
-
-    const newCounter = document.createElement("p");
-    newCounter.id = "rsvp-count";
-    newCounter.textContent = "⭐ " + count + " people have RSVP'd to this event!";
-    participantsContainer.appendChild(newCounter);
+  const newCounter = document.createElement("p");
+  newCounter.id = "rsvp-count";
+  newCounter.textContent = "⭐ " + count + " people have RSVP'd to this event!";
+  participantsContainer.appendChild(newCounter);
 };
 
+const validateForm = (event) => {
+  event.preventDefault();
+  let containsErrors = false;
 
-rsvpForm.addEventListener("submit", addParticipant);
+  const rsvpInputs = rsvpForm.elements;
+
+  for (let i = 0; i < rsvpInputs.length; i++) {
+    const input = rsvpInputs[i];
+
+    if (input.type === "submit" || input.tagName.toLowerCase() === "button") continue;
+
+    if (input.value.trim().length < 2) {
+      input.classList.add("error");
+      containsErrors = true;
+    } else {
+      input.classList.remove("error");
+    }
+  }
+
+  if (!containsErrors) {
+    addParticipant(nameInput.value.trim(), locationInput.value.trim());
+
+    for (let i = 0; i < rsvpInputs.length; i++) {
+      if (rsvpInputs[i].type !== "submit" && rsvpInputs[i].tagName.toLowerCase() !== "button") {
+        rsvpInputs[i].value = "";
+      }
+    }
+  }
+};
+
+rsvpForm.addEventListener("submit", validateForm);
+
+
 
