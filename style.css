@@ -46,6 +46,10 @@ a:hover {
     text-decoration: underline;
 }
 
+a:visited {
+  color: darkgrey;
+}
+
 h3 {
     font-size: 30px;
 }
@@ -220,4 +224,7 @@ p {
 
 /***RSVP***/
 
+.rsvp-container {
+  display: flexbox;
+}
 
