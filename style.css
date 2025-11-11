@@ -17,7 +17,7 @@ html {
 
 .navbar ul li {
     float: left;
-    margin: 25px;
+    margin: 28px;
 }
 
 .navbar ul li a {
@@ -53,6 +53,7 @@ a:visited {
 h3 {
     font-size: 30px;
 }
+
 p {
     font-size: 20px;
 }
@@ -222,9 +223,113 @@ p {
 /*** Body Event Ends ***/
 /*** Body Links Starts/Ends ***/
 
+/***Dark Theme***/
+
+#theme-button {
+    background-color: darkturquoise;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#theme-button:hover {
+    background-color: darkslateblue;
+    color: white;
+}
+
+.dark-mode {
+  background-color: darkorchid;
+  color: white;
+}
+
+.dark-mode .header-container {
+  background-color: darkmagenta;
+}
+
+.dark-mode h2 {
+  color: white;
+}
+
+.dark-mode a {
+  color: lightcoral;
+}
+
+.dark-mode .navbar {
+  background-color: darkmagenta;
+}
+
+.dark-mode .body-header p {
+  color: white;
+}
+
+.dark-mode .body-line {
+  background-color: darkorchid;
+}
+
+.dark-mode .body-line li {
+  color: white;
+}
+
+.dark-mode .body-line h3 {
+  color: white;
+}
+
+.dark-mode .rsvp-container {
+  background-color: darkmagenta;
+}
+
 /***RSVP***/
 
 .rsvp-container {
-  display: flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    color: black;
 }
 
+.rsvp-para p {
+  font-size: 22px;
+}
+
+#rsvp-button {
+    border: none;
+    border-radius: 16px;
+    padding: 10px 20px;
+    color: white;
+    background-color: darkslateblue;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#rsvp-button:hover {
+    background-color: #0056b3;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+
+#rsvp-form {
+  font-size: 18px;
+}
+
+.dark-mode .rsvp-container p {
+  color: white;
+}
+
+#rsvp-participants p {
+  margin: 5px 0;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
